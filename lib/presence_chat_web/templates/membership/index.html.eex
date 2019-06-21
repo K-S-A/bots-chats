@@ -1,0 +1,24 @@
+<h1>Listing Memberships</h1>
+
+<table>
+  <thead>
+    <tr>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for membership <- @memberships do %>
+    <tr>
+
+      <td>
+        <%= link "Show", to: Routes.membership_path(@conn, :show, membership) %>
+        <%= link "Edit", to: Routes.membership_path(@conn, :edit, membership) %>
+        <%= link "Delete", to: Routes.membership_path(@conn, :delete, membership), method: :delete, data: [confirm: "Are you sure?"] %>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Membership", to: Routes.membership_path(@conn, :new) %></span>

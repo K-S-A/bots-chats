@@ -1,0 +1,156 @@
+/* This file is for your main application css. */
+
+@import "./phoenix.css";
+@import "../../deps/phoenix_live_view/assets/css/live_view.css";
+@import "../node_modules/spectre.css/dist/spectre.min.css";
+@import "../node_modules/spectre.css/dist/spectre-icons.min.css";
+@import "../node_modules/spectre.css/dist/spectre-exp.min.css";
+
+// .chat-container {
+//   display: flex;
+//   width: 100%;
+
+//   .chat-users-container {
+//     width: 200px;
+//   }
+
+//   .chat-messages-container {
+//     flex: 1;
+//       // transform: rotate(180deg);
+
+//     .chat-messages {
+//       overflow: hidden;
+//       overflow-y: scroll;
+//       height: 50vh;
+//       // transform: rotate(180deg);
+
+//       ol {
+//         list-style-type: none;
+//         display: flex;
+//         flex-direction: column-reverse;
+
+//         li {
+//           // flex-direction: row-reverse;
+//           // transform: rotate(180deg);
+//         }
+//       }
+//     }
+//   }
+// }
+
+// .user-avatar-container {
+//   .user-avatar {
+//     vertical-align: middle;
+//     border-radius: 50%;
+//   }
+
+//   &.active {
+//     position: relative;
+//     width: 50px;
+//     height: 50px;
+
+//     &:after {
+//       background: #1ecd6e;
+//       // border-color: white;
+//       border-radius: 50%;
+//       // border-style: solid;
+//       // border-width: 2px;
+//       content: "";
+//       bottom: 3px;
+//       height: 7px;
+//       position: absolute;
+//       right: 3px;
+//       width: 7px;
+//     }
+
+//     &.away {
+//       &:after {
+//         background: transparent;
+//         border-color: #1ecd6e;
+//         border-style: solid;
+//         border-width: 1px;
+//       }
+//     }
+//   }
+
+  .typing {
+    &:before {
+      content: "";
+      border: 3px solid #62bd19;
+      border-radius: 30px;
+      height: 1em;
+      width: 1em;
+      position: absolute;
+      bottom: -50%;
+      right: -50%;
+      animation: pulsate 1s ease-out;
+      animation-iteration-count: infinite;
+      opacity: 0.0
+    }
+  }
+// }
+
+// // .flex_item_left {
+// //   width: 200px;
+// //   background: lightgreen;
+// // }
+// // .flex_item_right {
+// //   flex: 1;
+// //   background: lightblue;
+// // }
+
+// // .active:after {
+// //   animation: wavy-loader 1s .1s ease-out infinite;
+// // }
+
+// // @keyframes wavy-loader {
+// //   0%    { top: 2px; }
+// //   1%    { top: 4px; }
+// //   2%    { top:6px; }
+// //   3%    { top:8px; }
+// //   4%    { top: 10px; }
+// //   5%    { top:12px; opacity: 1; }
+// //   6%    { top: -2px; opacity: 1; }
+// //   7%    { top: -4px; opacity: 1; }
+// //   8%    { top: -6px; opacity: 1; }
+// //   9%    { top: -8px; opacity: 1; }
+// //   10%   { top: -10px; opacity: 1; }
+// //   11%   { top: -12px; opacity: 1; }
+// //   12%   { top: 0; opacity: .5; }
+// //   100%  { top: 0; opacity: .5; }
+// // }
+
+
+
+
+// .ring-container {
+//   position: relative;
+// }
+
+// .circle {
+//   width: 15px;
+//   height: 15px;
+//   background-color: #62bd19;
+//   border-radius: 50%;
+//   position: absolute;
+//   top: 23px;
+//   left: 23px;
+// }
+
+// .ringring {
+//   border: 3px solid #62bd19;
+//   -webkit-border-radius: 30px;
+//   height: 25px;
+//   width: 25px;
+//   position: absolute;
+//   left: 15px;
+//   top: 15px;
+//   -webkit-animation: pulsate 1s ease-out;
+//   -webkit-animation-iteration-count: infinite;
+//   opacity: 0.0
+// }
+@-webkit-keyframes pulsate {
+  0% {-webkit-transform: scale(0.1, 0.1); opacity: 0.0;}
+  50% {opacity: 1.0;}
+  100% {-webkit-transform: scale(1.2, 1.2); opacity: 0.0;}
+}

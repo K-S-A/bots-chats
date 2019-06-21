@@ -1,0 +1,8 @@
+<h1>Show Membership</h1>
+
+<ul>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.membership_path(@conn, :edit, @membership) %></span>
+<span><%= link "Back", to: Routes.membership_path(@conn, :index) %></span>

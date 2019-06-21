@@ -6,9 +6,12 @@
     "watch": "webpack --mode development --watch"
   },
   "dependencies": {
+    "node-sass": "^4.9.0",
     "phoenix": "file:../deps/phoenix",
     "phoenix_html": "file:../deps/phoenix_html",
-    "phoenix_live_view": "file:../deps/phoenix_live_view"
+    "phoenix_live_view": "file:../deps/phoenix_live_view",
+    "sass-loader": "^7.0.1",
+    "spectre.css": "^0.5.8"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

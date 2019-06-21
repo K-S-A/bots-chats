@@ -11,7 +11,8 @@ defmodule PresenceChat.Application do
       # Start the Ecto repository
       PresenceChat.Repo,
       # Start the endpoint when the application starts
-      PresenceChatWeb.Endpoint
+      PresenceChatWeb.Endpoint,
+      PresenceChatWeb.Presence
       # Starts a worker by calling: PresenceChat.Worker.start_link(arg)
       # {PresenceChat.Worker, arg},
     ]

@@ -18,6 +18,20 @@ defmodule PresenceChatWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+
+    resources "/sessions", SessionController,
+      only: [:new, :create, :delete],
+      singleton: true
+
+    # get "/chats/search", SearchChatController, :index
+
+    live "/chats/search", SearchChatsLiveView, session: [:user_id]
+    live "/chats/:id", ChatLiveView, session: [:user_id]
+    # live “/users/new”, UserLive.New
+    resources "/users", UserController
+    resources "/chats", ChatController
+    resources "/messages", MessageController
+    resources "/memberships", MembershipController
   end
 
   # Other scopes may use custom stacks.

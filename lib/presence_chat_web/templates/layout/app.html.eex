@@ -8,21 +8,35 @@
     <link rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
   </head>
   <body>
-    <header>
-      <section class="container">
+    <header style="margin-bottom: 5px;">
+      <section class="container" style="display: none;">
         <nav role="navigation">
           <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
+            <li><a style="display: none;" href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
           </ul>
         </nav>
-        <a href="http://phoenixframework.org/" class="phx-logo">
+        <a style="display: none;" href="http://phoenixframework.org/" class="phx-logo">
           <img src="<%= Routes.static_path(@conn, "/images/phoenix.png") %>" alt="Phoenix Framework Logo"/>
         </a>
       </section>
     </header>
-    <main role="main" class="container">
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+    <main role="main" class="container-custom">
+      <% flash_info = get_flash(@conn, :info) %>
+      <%= if flash_info do %>
+        <div class="toast toast-primary" role="alert">
+          <button class="btn btn-clear float-right"></button>
+          <%= flash_info %>
+        </div>
+      <% end %>
+
+      <% flash_error = get_flash(@conn, :error) %>
+      <%= if flash_error do %>
+        <div class="toast toast-error" role="alert">
+          <button class="btn btn-clear float-right"></button>
+          <%= flash_error %>
+        </div>
+      <% end %>
+
       <%= render @view_module, @view_template, assigns %>
     </main>
     <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>

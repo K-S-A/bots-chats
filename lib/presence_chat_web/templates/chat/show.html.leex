@@ -1,0 +1,93 @@
+<div class="container" phx-focus="page-active" phx-blur="page-inactive" phx-target="window">
+  <div class="columns">
+    <div class="column col-auto hide-sm" style="max-width: 200px;">
+      <div class="panel" style="height: 95vh;">
+        <div class="panel-header">
+          <div class="panel-title h6">
+            Users
+          </div>
+        </div>
+        <div class="panel-body">
+          <% user_list = sorted_chat_users(@chat, @users) %>
+
+          <%= for user <- user_list do %>
+            <div class="tile tile-centered py-1">
+              <div class="tile-icon">
+                <figure class="avatar avatar-lg" data-initial="<%= initials(user) %>" style="background-color: #5755d9;">
+                  <img src="<%= avatar_image_url(user) %>" alt="Avatar for user <%= full_name(user) %>">
+                  <i class="avatar-presence <%= status_class(@users, user) %> <%= typing_class(@users, user) %>"></i>
+                </figure>
+              </div>
+              <div class="tile-content">
+                <div class="tile-title">
+                  <%= full_name(user) %>
+                </div>
+                <small class="tile-subtitle text-gray">1 Jan, 2019</small>
+              </div>
+              <%# <div class="tile-action">
+                <button class="btn btn-link">
+                  <i class="icon icon-more-vert"></i>
+                </button>
+              </div> %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="column" style="min-width: 300px;">
+      <div class="panel" style="height: 95vh;">
+        <div class="panel-header">
+          <div class="tile tile-centered">
+            <div class="tile-icon">
+              <%= link to: Routes.live_path(@socket, PresenceChatWeb.SearchChatsLiveView), data: [phx_live_link: "push"], class: "btn btn-primary btn-action btn-lg" do %>
+                <i class="icon icon-arrow-left"></i>
+              <% end %>
+            </div>
+            <div class="tile-content">
+              <p class="tile-title text-bold"><%= @chat.name %></p>
+              <p class="tile-subtitle text-gray ">
+                <%= ngettext("%{count} member", "%{count} members", Enum.count(@chat.members)) %>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="panel-body">
+          <%= for message <- @chat.messages do %>
+            <div class="tile">
+              <div class="tile-icon">
+                <figure class="avatar avatar-lg" data-initial="<%= initials(message.author) %>" style="background-color: #5755d9;">
+                  <img src="<%= avatar_image_url(message.author) %>" alt="Avatar for user <%= full_name(message.author) %>">
+                  <i class="avatar-presence <%= status_class(@users, message.author) %>"></i>
+                </figure>
+              </div>
+              <div class="tile-content">
+                <p class="tile-title text-bold mb-0">
+                  <%= full_name(message.author) %>
+                  <span class="text-normal text-italic">(<%= message.inserted_at %>)</span>
+                </p>
+                <p class="tile-subtitle text-break"><%= message.body %></p>
+              </div>
+            </div>
+          <% end %>
+        </div>
+        <div class="panel-footer">
+          <%= if Enum.member?(@chat.members, @current_user) do %>
+            <%= form_for @message, "#", [phx_change: :typing, phx_submit: :message, class: "mb-0"], fn f -> %>
+              <div class="form-group <%= if @message.action, do: "has-error", else: "" %>">
+                <%= error_tag f, :body %>
+                <div class="input-group">
+                  <%= text_input :message, :body, value: @message.changes[:body], phx_blur: "stop_typing", placeholder: "write your message here...", autofocus: true, required: true, class: "form-input input-lg", autocomplete: "off" %>
+                  <%= submit "Send", class: "btn btn-primary input-group-btn btn-lg" %>
+                </div>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="btn-group btn-group-block">
+              <%= link "Join", to: "#", phx_click: :join, class: "btn btn-primary" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
