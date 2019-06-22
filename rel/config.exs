@@ -37,8 +37,6 @@ end
 environment :prod do
   set include_erts: true
   set include_src: false
-  set cookie: :"k><gk$Zp%gQ)0h6ITsBsFn|;gOd2FDfJO8N?$O>&`wV$VPdC<NwS.R};ivw8xA33"
-  set vm_args: "rel/vm.args"
 end
 
 # You may define one or more releases in this file.
@@ -52,4 +50,3 @@ release :presence_chat do
     :runtime_tools
   ]
 end
-

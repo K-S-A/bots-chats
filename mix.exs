@@ -20,7 +20,7 @@ defmodule PresenceChat.MixProject do
   def application do
     [
       mod: {PresenceChat.Application, []},
-      extra_applications: [:logger, :runtime_tools, :ssl]
+      extra_applications: [:logger, :runtime_tools]
     ]
   end
 
@@ -45,8 +45,7 @@ defmodule PresenceChat.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:phoenix_live_view, github: "phoenixframework/phoenix_live_view"},
       {:comeonin, "~> 2.0"},
-      {:distillery, "~> 2.0", runtime: false},
-      {:libcluster, "~> 3.0"}
+      {:distillery, "~> 2.0", runtime: false}
     ]
   end
 
