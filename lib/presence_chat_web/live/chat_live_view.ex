@@ -88,7 +88,7 @@ defmodule PresenceChatWeb.ChatLiveView do
 
   def handle_event(
         "page-active",
-        args,
+        _args,
         %{assigns: %{chat: chat, current_user: current_user}} = socket
       ) do
     Presence.update_presence(self(), topic(chat.id), current_user.id, %{away: false})
@@ -99,7 +99,7 @@ defmodule PresenceChatWeb.ChatLiveView do
 
   def handle_event(
         "page-inactive",
-        args,
+        _args,
         %{assigns: %{chat: chat, current_user: current_user}} = socket
       ) do
     # IO.inspect({args, current_user}, label: "page-inactive")
