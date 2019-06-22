@@ -19,7 +19,7 @@ config :presence_chat, PresenceChatWeb.Endpoint,
 
 config :presence_chat, PresenceChat.Repo,
   adapter: Ecto.Adapters.Postgres,
-  url: "${DATABASE_URL}",
+  url: System.get_env("DATABASE_URL"),
   database: "",
   ssl: true,
   pool_size: 1
