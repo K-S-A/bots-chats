@@ -11,11 +11,11 @@ use Mix.Config
 # before starting your production server.
 config :presence_chat, PresenceChatWeb.Endpoint,
   load_from_system_env: true,
-  url: [host: "${APP_NAME}.gigalixirapp.com", port: 80],
+  url: [host: "#{System.get_env("APP_NAME")}.gigalixirapp.com", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json",
   server: true,
-  secret_key_base: "${SECRET_KEY_BASE}",
-  live_view: [signing_salt: "${LIVE_VIEW_SALT}"]
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
+  live_view: [signing_salt: System.get_env("LIVE_VIEW_SALT")]
 
 config :presence_chat, PresenceChat.Repo,
   adapter: Ecto.Adapters.Postgres,
@@ -32,8 +32,8 @@ config :libcluster,
     k8s_example: [
       strategy: Cluster.Strategy.Kubernetes,
       config: [
-        kubernetes_selector: "${LIBCLUSTER_KUBERNETES_SELECTOR}",
-        kubernetes_node_basename: "${LIBCLUSTER_KUBERNETES_NODE_BASENAME}"]]]
+        kubernetes_selector: System.get_env("LIBCLUSTER_KUBERNETES_SELECTOR"),
+        kubernetes_node_basename: System.get_env("LIBCLUSTER_KUBERNETES_NODE_BASENAME")]]]
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
