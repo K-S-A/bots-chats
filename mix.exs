@@ -45,7 +45,8 @@ defmodule PresenceChat.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:phoenix_live_view, github: "phoenixframework/phoenix_live_view"},
       {:comeonin, "~> 2.0"},
-      {:distillery, "~> 2.0", runtime: false}
+      {:distillery, "~> 2.0", runtime: false},
+      {:libcluster, "~> 3.0"}
     ]
   end
 
