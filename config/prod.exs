@@ -11,6 +11,7 @@ use Mix.Config
 # before starting your production server.
 config :presence_chat, PresenceChatWeb.Endpoint,
   load_from_system_env: true,
+  http: [port: 4000],
   url: [host: "#{System.get_env("APP_NAME")}.gigalixirapp.com", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json",
   live_view: [signing_salt: System.get_env("LIVE_VIEW_SALT")]
