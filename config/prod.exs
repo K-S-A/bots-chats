@@ -23,9 +23,9 @@ config :presence_chat, GigalixirGettingStartedWeb.Endpoint,
 config :presence_chat, PresenceChat.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
-  database: "",
-  ssl: true,
-  pool_size: 1
+  database: "presence_chat_dev",
+  ssl: false,
+  pool_size: 4
 
 # Do not print debug messages in production
 config :logger, level: :info
