@@ -15,10 +15,12 @@ defmodule PresenceChat.Chats.Chat do
   end
 
   @doc false
-  def changeset(chat, attrs) do
+  def changeset(chat, %{admin: admin} = attrs) do
     chat
-    |> cast(attrs, [:name, :admin_id])
+    |> cast(Map.merge(attrs, %{admin_id: admin.id}), [:name, :admin_id])
     |> validate_required([:name, :admin_id])
+    |> put_assoc(:memberships, [%PresenceChat.Memberships.Membership{user_id: admin.id}])
+    |> put_assoc(:messages, [%PresenceChat.Messages.Message{author_id: admin.id, body: "Hi everyone! Let's chat!"}])
     |> unique_constraint(:name, name: :chats_name_index)
   end
 end

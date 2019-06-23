@@ -19,6 +19,8 @@ defmodule PresenceChatWeb.Router do
 
     get "/", PageController, :index
 
+    get "/login", SessionController, :new
+
     resources "/sessions", SessionController,
       only: [:new, :create, :delete],
       singleton: true
@@ -27,6 +29,7 @@ defmodule PresenceChatWeb.Router do
 
     live "/chats/search", SearchChatsLiveView, session: [:user_id]
     live "/chats/:id", ChatLiveView, session: [:user_id]
+    get "/sign-up", UserController, :new
     # live “/users/new”, UserLive.New
     resources "/users", UserController
     resources "/chats", ChatController

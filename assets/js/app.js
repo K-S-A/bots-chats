@@ -20,3 +20,11 @@ import LiveSocket from "phoenix_live_view"
 
 let liveSocket = new LiveSocket("/live")
 liveSocket.connect()
+
+document.addEventListener('click', function (event) {
+  let element = event.target;
+
+  if (element.matches('.toast .btn-clear')) {
+    element.parentNode.remove();
+  }
+}, false);

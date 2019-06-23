@@ -13,7 +13,7 @@ defmodule PresenceChatWeb.SessionController do
         |> put_flash(:info, "Welcome back!")
         |> put_session(:user_id, user.id)
         |> configure_session(renew: true)
-        |> redirect(to: "/chats")
+        |> redirect(to: "/chats/search")
 
       :error ->
         conn

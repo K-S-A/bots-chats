@@ -138,9 +138,9 @@ defmodule PresenceChat.Chats do
       %Ecto.Changeset{source: %Chat{}}
 
   """
-  def change_chat(chat \\ %Chat{})
-  def change_chat(%Chat{} = chat) do
-    Chat.changeset(chat, %{})
+  def change_chat(chat \\ %Chat{}, attrs \\ %{})
+  def change_chat(%Chat{} = chat, attrs) do
+    Chat.changeset(chat, attrs)
   end
 
   def recent_message(%Chat{} = chat) do

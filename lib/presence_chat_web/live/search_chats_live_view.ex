@@ -17,18 +17,19 @@ defmodule PresenceChatWeb.SearchChatsLiveView do
 
   def mount(%{user_id: user_id}, socket) do
     chats = Chats.list_chats()
+    current_user = PresenceChat.Accounts.get_user!(user_id)
 
     Enum.each(chats, &PresenceChatWeb.Endpoint.subscribe(topic(&1.id)))
 
     {:ok,
      assign(socket,
-       current_user: PresenceChat.Accounts.get_user!(user_id),
+       current_user: current_user,
        chats: chats,
        csrf_token: Phoenix.Controller.get_csrf_token(),
        search: %{query: ""},
        recent_messages: Enum.reduce(chats, %{}, &Map.put(&2, &1.id, Enum.at(&1.messages, 0))),
        users: Enum.reduce(chats, %{}, &Map.put(&2, &1.id, Presence.list_presences(topic(&1.id)))),
-       new_chat: Chats.change_chat(),
+       new_chat: Chats.change_chat(%Chats.Chat{}, %{admin: current_user}),
        conn: socket
      )}
   end
@@ -84,7 +85,7 @@ defmodule PresenceChatWeb.SearchChatsLiveView do
   def handle_event(
         "search",
         %{"search" => %{"query" => query}},
-        %{assigns: %{chats: chats, current_user: _}} = socket
+        %{assigns: %{chats: chats, current_user: current_user}} = socket
       ) do
     query = String.trim(query || "")
 
@@ -115,7 +116,7 @@ defmodule PresenceChatWeb.SearchChatsLiveView do
        search: %{query: query},
        recent_messages: Enum.reduce(chats, %{}, &Map.put(&2, &1.id, Enum.at(&1.messages, 0))),
        users: Enum.reduce(chats, %{}, &Map.put(&2, &1.id, Presence.list_presences(topic(&1.id)))),
-       new_chat: Chats.change_chat()
+       new_chat: Chats.change_chat(%Chats.Chat{}, %{admin: current_user})
      )}
   end
 
@@ -126,22 +127,8 @@ defmodule PresenceChatWeb.SearchChatsLiveView do
       ) do
     name = String.trim(name || "")
 
-    # IO.inspect(Routes.chat_path(socket, :show, "1cefb35d-13e3-45eb-bc81-b65757b09f59"), label: "redirect")
-    # a =
-    #   socket
-    #   |> put_flash(:info, "Chat created successfully.")
-    #   |> redirect(to: Routes.chat_path(socket, :show, "1cefb35d-13e3-45eb-bc81-b65757b09f59"))
-    # IO.inspect(a, label: "a")
-
-    # {:stop, a}
-    case Chats.create_chat(%{name: name, admin_id: current_user.id}) do
+    case Chats.create_chat(%{name: name, admin: current_user}) do
       {:ok, chat} ->
-        # IO.inspect(Routes.chat_path(socket, :show, chat), label: "redirect")
-
-        # IO.inspect(Routes.live_path(socket, PresenceChatWeb.ChatLiveView, chat),
-        #   label: "live_redirect"
-        # )
-
         {:stop,
          conn
          |> put_flash(:info, "Chat created successfully.")

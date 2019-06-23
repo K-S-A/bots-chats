@@ -1,31 +1,54 @@
-<%= form_for @changeset, @action, fn f -> %>
-  <%= if @changeset.action do %>
-    <div class="alert alert-danger">
-      <p>Oops, something went wrong! Please check the errors below.</p>
+<div class="container">
+  <div class="columns">
+    <div class="column col-6 col-mx-auto">
+      <h1>Sign up</h1>
+
+      <%= form_for @changeset, @action, fn f -> %>
+        <%= if @changeset.action do %>
+          <div class="alert alert-danger">
+            <p>Oops, something went wrong! Please check the errors below.</p>
+          </div>
+        <% end %>
+
+        <div class="form-group">
+          <%= label f, :email, class: "form-label" %>
+          <%= text_input f, :email, class: "form-input", placeholder: "Email", autofocus: true %>
+          <%= error_tag f, :email %>
+        </div>
+
+        <div class="form-group">
+          <%= label f, :password, class: "form-label" %>
+          <%= password_input f, :password, class: "form-input", placeholder: "Password" %>
+          <%= error_tag f, :password %>
+        </div>
+
+        <div class="form-group">
+          <%= label f, :first_name, class: "form-label" %>
+          <%= text_input f, :first_name, class: "form-input", placeholder: "First Name" %>
+          <%= error_tag f, :first_name %>
+        </div>
+
+        <div class="form-group">
+          <%= label f, :last_name, class: "form-label" %>
+          <%= text_input f, :last_name, class: "form-input", placeholder: "Last Name" %>
+          <%= error_tag f, :last_name %>
+        </div>
+
+        <div class="form-group">
+          <%= label f, :nickname, class: "form-label" %>
+          <%= text_input f, :nickname, class: "form-input", placeholder: "Nickname" %>
+          <%= error_tag f, :nickname %>
+        </div>
+
+        <div class="btn-group btn-group-block mb-2">
+          <%= submit "Sign Up", class: "btn btn-primary" %>
+        </div>
+
+        <div class="btn-group btn-group-block">
+          <%= link "Log In", to: "/login", class: "btn" %>
+        </div>
+      <% end %>
+
     </div>
-  <% end %>
-
-  <%= label f, :first_name %>
-  <%= text_input f, :first_name %>
-  <%= error_tag f, :first_name %>
-
-  <%= label f, :last_name %>
-  <%= text_input f, :last_name %>
-  <%= error_tag f, :last_name %>
-
-  <%= label f, :nickname %>
-  <%= text_input f, :nickname %>
-  <%= error_tag f, :nickname %>
-
-  <%= label f, :email %>
-  <%= text_input f, :email %>
-  <%= error_tag f, :email %>
-
-  <%= label f, :password %>
-  <%= password_input f, :password %>
-  <%= error_tag f, :password %>
-
-  <div>
-    <%= submit "Save" %>
   </div>
-<% end %>
+</div>

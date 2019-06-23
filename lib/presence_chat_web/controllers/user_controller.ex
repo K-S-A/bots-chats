@@ -19,7 +19,9 @@ defmodule PresenceChatWeb.UserController do
       {:ok, user} ->
         conn
         |> put_flash(:info, "User created successfully.")
-        |> redirect(to: Routes.user_path(conn, :show, user))
+        |> put_session(:user_id, user.id)
+        |> configure_session(renew: true)
+        |> redirect(to: "/chats/search")
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset)
