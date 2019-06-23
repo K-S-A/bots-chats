@@ -11,7 +11,7 @@ use Mix.Config
 # before starting your production server.
 config :presence_chat, PresenceChatWeb.Endpoint,
   load_from_system_env: true,
-  url: [scheme: "https", host: "bots-chats", port: 443],
+  url: [scheme: "https", host: System.get_env("APP_NAME"), port: 443],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
   # http: [port: 4000],
   http: [port: System.get_env("PORT") || "4000"],
