@@ -2,7 +2,7 @@ defmodule PresenceChatWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :presence_chat
 
   socket "/socket", PresenceChatWeb.UserSocket,
-    websocket: true,
+    websocket: [timeout: 45_000],
     longpoll: false
 
   socket "/live", Phoenix.LiveView.Socket

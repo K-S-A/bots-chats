@@ -11,21 +11,23 @@ use Mix.Config
 # before starting your production server.
 config :presence_chat, PresenceChatWeb.Endpoint,
   load_from_system_env: true,
-  http: [port: 4000],
-  url: [host: "#{System.get_env("APP_NAME")}.gigalixirapp.com", port: 80],
+  url: [scheme: "https", host: "bots-chats", port: 443],
+  force_ssl: [rewrite_on: [:x_forwarded_proto]],
+  # http: [port: 4000],
+  # url: [host: "#{System.get_env("APP_NAME")}.gigalixirapp.com", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json",
   live_view: [signing_salt: System.get_env("LIVE_VIEW_SALT")]
 
-config :presence_chat, GigalixirGettingStartedWeb.Endpoint,
+config :presence_chat, PresenceChatWeb.Endpoint,
   server: true,
   secret_key_base: System.get_env("SECRET_KEY_BASE")
 
 config :presence_chat, PresenceChat.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
-  database: "presence_chat_dev",
-  ssl: false,
-  pool_size: 4
+  # database: "presence_chat_dev",
+  ssl: true,
+  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
 
 # Do not print debug messages in production
 config :logger, level: :info
