@@ -14,6 +14,7 @@ config :presence_chat, PresenceChatWeb.Endpoint,
   url: [scheme: "https", host: "bots-chats", port: 443],
   force_ssl: [rewrite_on: [:x_forwarded_proto]],
   # http: [port: 4000],
+  http: [port: System.get_env("PORT") || "4000"],
   # url: [host: "#{System.get_env("APP_NAME")}.gigalixirapp.com", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json",
   live_view: [signing_salt: System.get_env("LIVE_VIEW_SALT")]
