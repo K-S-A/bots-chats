@@ -31,10 +31,10 @@ defmodule PresenceChatWeb.Router do
     live "/chats/:id", ChatLiveView, session: [:user_id]
     get "/sign-up", UserController, :new
     # live “/users/new”, UserLive.New
-    resources "/users", UserController
-    resources "/chats", ChatController
-    resources "/messages", MessageController
-    resources "/memberships", MembershipController
+    # resources "/users", UserController
+    # resources "/chats", ChatController
+    # resources "/messages", MessageController
+    # resources "/memberships", MembershipController
   end
 
   # Other scopes may use custom stacks.

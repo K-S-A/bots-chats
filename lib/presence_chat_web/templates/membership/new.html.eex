@@ -1,5 +1,0 @@
-<h1>New Membership</h1>
-
-<%= render "form.html", Map.put(assigns, :action, Routes.membership_path(@conn, :create)) %>
-
-<span><%= link "Back", to: Routes.membership_path(@conn, :index) %></span>
