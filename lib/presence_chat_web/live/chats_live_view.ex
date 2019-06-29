@@ -1,12 +1,9 @@
 defmodule PresenceChatWeb.ChatsLiveView do
   use Phoenix.LiveView
-  # alias PresenceChat.Chats
-  # alias PresenceChat.Messages
   alias PresenceChatWeb.Presence
 
   defp topic(chat_id), do: "chat:#{chat_id}"
 
-  @spec render(%{chats: any}) :: any
   def render(%{chats: _} = assigns) do
     PresenceChatWeb.ChatsView.render("index.html", assigns)
   end
@@ -18,8 +15,8 @@ defmodule PresenceChatWeb.ChatsLiveView do
      assign(socket,
        chats: chats,
        current_user: current_user,
-       recent_messages: Enum.reduce(chats, %{}, &Map.put(&2, &1.id, Enum.at(&1.messages, 0))),
        conn: socket,
+       recent_messages: Enum.reduce(chats, %{}, &Map.put(&2, &1.id, Enum.at(&1.messages, 0))),
        users: Enum.reduce(chats, %{}, &Map.put(&2, &1.id, Presence.list_presences(topic(&1.id))))
      )}
   end
@@ -31,12 +28,15 @@ defmodule PresenceChatWeb.ChatsLiveView do
      )}
   end
 
-  def handle_info(%{event: "message", payload: %{chat: chat, message: message}}, %{assigns: %{recent_messages: recent_messages}} = socket) do
+  def handle_info(
+        %{event: "message", payload: %{chat: chat, message: message}},
+        %{assigns: %{recent_messages: recent_messages}} = socket
+      ) do
     {:noreply, assign(socket, recent_messages: Map.put(recent_messages, chat.id, message))}
   end
 
   def handle_info(%{payload: payload}, socket) do
-    {:noreply, assign(socket, payload )}
+    {:noreply, assign(socket, payload)}
   end
 
   def handle_info(_payload, socket) do

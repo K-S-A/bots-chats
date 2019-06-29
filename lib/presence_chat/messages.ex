@@ -98,12 +98,9 @@ defmodule PresenceChat.Messages do
       %Ecto.Changeset{source: %Message{}}
 
   """
+  def change_message(message \\ %Message{})
   def change_message(%Message{} = message) do
     Message.changeset(message, %{})
-  end
-
-  def change_message do
-    Message.changeset(%Message{})
   end
 
   def change_message(changeset, changes) do

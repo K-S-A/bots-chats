@@ -14,10 +14,6 @@ defmodule PresenceChatWeb.ChatLiveView do
     PresenceChatWeb.ChatView.render("show.html", assigns)
   end
 
-  # def mount(payload, socket) do
-  #   IO.inspect({payload, socket})
-  # end
-
   def mount(%{user_id: user_id}, socket) do
     {:ok, assign(socket, :current_user, PresenceChat.Accounts.get_user!(user_id))}
   end
@@ -93,7 +89,6 @@ defmodule PresenceChatWeb.ChatLiveView do
       ) do
     Presence.update_presence(self(), topic(chat.id), current_user.id, %{away: false})
 
-    # IO.inspect({args, current_user}, label: "page-active")
     {:noreply, socket}
   end
 
@@ -102,8 +97,6 @@ defmodule PresenceChatWeb.ChatLiveView do
         _args,
         %{assigns: %{chat: chat, current_user: current_user}} = socket
       ) do
-    # IO.inspect({args, current_user}, label: "page-inactive")
-
     Presence.update_presence(self(), topic(chat.id), current_user.id, %{away: true})
     {:noreply, socket}
   end
@@ -163,18 +156,13 @@ defmodule PresenceChatWeb.ChatLiveView do
   end
 
   def handle_event("join", _, %{assigns: %{chat: chat, current_user: current_user}} = socket) do
-    # Presence.update_presence(self(), topic(chat.id), current_user.id, %{away: false})
-    # chat = Chats.join!(chat, current_user)
     Memberships.create_membership(%{chat: chat, user: current_user})
     chat = Chats.get_chat!(chat.id)
 
-    # chat
-    # |> Ecto.Changeset.change()
-    # |> Ecto.Changeset.put_assoc(:comments, [%Comment{body: "so-so example!"} | post.comments])
-    # |> Repo.update!()
-
-    # IO.inspect({args, current_user}, label: "page-active")
-    PresenceChatWeb.Endpoint.broadcast_from(self(), topic(chat.id), "joined", %{chat: chat, user: current_user})
+    PresenceChatWeb.Endpoint.broadcast_from(self(), topic(chat.id), "joined", %{
+      chat: chat,
+      user: current_user
+    })
 
     {:noreply, assign(socket, chat: chat)}
   end

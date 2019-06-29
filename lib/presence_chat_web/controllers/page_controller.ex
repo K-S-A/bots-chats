@@ -4,6 +4,5 @@ defmodule PresenceChatWeb.PageController do
   def index(conn, _params) do
     conn
     |> redirect(to: "/login")
-    # render(conn, "index.html")
   end
 end
