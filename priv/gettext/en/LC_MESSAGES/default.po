@@ -1,0 +1,140 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+"Plural-Forms: nplurals=2\n"
+
+#, elixir-format
+#: lib/presence_chat_web/templates/chat/show.html.leex:49
+msgid "%{count} member"
+msgid_plural "%{count} members"
+msgstr[0] ""
+msgstr[1] ""
+
+#, elixir-format
+#: lib/presence_chat_web/templates/chat/show.html.leex:60
+#: lib/presence_chat_web/templates/search_chats/index.html.leex:43
+#: lib/presence_chat_web/templates/search_chats/index.html.leex:58
+msgid "Avatar for user %{full_name}"
+msgstr ""
+
+#, elixir-format
+#: lib/presence_chat_web/templates/search_chats/index.html.leex:9
+msgid "Bots Chats"
+msgstr ""
+
+#, elixir-format
+#: lib/presence_chat_web/templates/search_chats/index.html.leex:100
+msgid "Create new chat"
+msgstr ""
+
+#, elixir-format
+#: lib/presence_chat_web/templates/session/new.html.eex:8
+#: lib/presence_chat_web/templates/user/form.html.eex:15
+msgid "Email"
+msgstr ""
+
+#, elixir-format
+#: lib/presence_chat_web/templates/user/form.html.eex:27
+msgid "First Name"
+msgstr ""
+
+#, elixir-format
+#: lib/presence_chat_web/templates/chat/show.html.leex:87
+msgid "Join"
+msgstr ""
+
+#, elixir-format
+#: lib/presence_chat_web/templates/user/form.html.eex:33
+msgid "Last Name"
+msgstr ""
+
+#, elixir-format
+#: lib/presence_chat_web/templates/user/form.html.eex:48
+msgid "Log In"
+msgstr ""
+
+#, elixir-format
+#: lib/presence_chat_web/templates/session/new.html.eex:17
+msgid "Login"
+msgstr ""
+
+#, elixir-format
+#: lib/presence_chat_web/templates/user/form.html.eex:39
+msgid "Nickname"
+msgstr ""
+
+#, elixir-format
+#: lib/presence_chat_web/templates/search_chats/index.html.leex:88
+msgid "No existing chats found"
+msgstr ""
+
+#, elixir-format
+#: lib/presence_chat_web/templates/search_chats/index.html.leex:5
+#: lib/presence_chat_web/templates/user/form.html.eex:9
+msgid "Oops, something went wrong! Please check the errors below."
+msgstr ""
+
+#, elixir-format
+#: lib/presence_chat_web/templates/session/new.html.eex:13
+#: lib/presence_chat_web/templates/user/form.html.eex:21
+msgid "Password"
+msgstr ""
+
+#, elixir-format
+#: lib/presence_chat_web/templates/search_chats/index.html.leex:20
+msgid "Search"
+msgstr ""
+
+#, elixir-format
+#: lib/presence_chat_web/templates/chat/show.html.leex:81
+msgid "Send"
+msgstr ""
+
+#, elixir-format
+#: lib/presence_chat_web/templates/session/new.html.eex:21
+#: lib/presence_chat_web/templates/user/form.html.eex:44
+msgid "Sign Up"
+msgstr ""
+
+#, elixir-format
+#: lib/presence_chat_web/templates/session/new.html.eex:4
+msgid "Sign in"
+msgstr ""
+
+#, elixir-format
+#: lib/presence_chat_web/templates/user/form.html.eex:4
+msgid "Sign up"
+msgstr ""
+
+#, elixir-format
+#: lib/presence_chat_web/templates/search_chats/index.html.leex:19
+msgid "Start to type chat name here..."
+msgstr ""
+
+#, elixir-format
+#: lib/presence_chat_web/templates/search_chats/index.html.leex:73
+msgid "View"
+msgstr ""
+
+#, elixir-format
+#: lib/presence_chat_web/templates/page/index.html.eex:2
+msgid "Welcome to %{name}!"
+msgstr ""
+
+#, elixir-format
+#: lib/presence_chat_web/templates/search_chats/index.html.leex:91
+msgid "You can create create new one to start conversation."
+msgstr ""
+
+#, elixir-format
+#: lib/presence_chat_web/templates/chat/show.html.leex:80
+msgid "write your message here..."
+msgstr ""
