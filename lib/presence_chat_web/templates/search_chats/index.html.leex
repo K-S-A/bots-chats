@@ -2,11 +2,11 @@
 <%= if @new_chat.action do %>
   <div class="toast toast-error">
     <button class="btn btn-clear float-right"></button>
-    Oops, something went wrong! Please check the errors below.
+    <%= gettext("Oops, something went wrong! Please check the errors below.") %>
   </div>
 <% end %>
 
-  <h1>Bots Chats</h1>
+  <h1><%= gettext("Bots Chats") %></h1>
 
   <div class="columns">
     <div class="column col-12">
@@ -16,8 +16,8 @@
         <span class="input-group-addon addon-lg">
           <i class="form-icon icon icon-search"></i>
         </span>
-        <%= text_input f, :query, value: @search.query, autofocus: true, class: "form-input input-lg", placeholder: "Start to type chat name here..." %>
-        <%= submit "Search", class: "btn btn-primary input-group-btn btn-lg" %>
+        <%= text_input f, :query, value: @search.query, autofocus: true, class: "form-input input-lg", placeholder: gettext("Start to type chat name here...") %>
+        <%= submit gettext("Search"), class: "btn btn-primary input-group-btn btn-lg" %>
       </div>
     <% end %>
 
@@ -40,7 +40,7 @@
 
                 <%= for user <- user_list do %>
                   <figure class="avatar avatar-sm" data-initial="<%= initials(user) %>" style="background-color: #5755d9;">
-                    <img src="<%= avatar_image_url(user) %>" alt="Avatar for user <%= full_name(user) %>">
+                    <img src="<%= avatar_image_url(user) %>" alt="<%= gettext("Avatar for user %{full_name}", full_name: full_name(user)) %>">
                     <i class="avatar-presence <%= status_class(users, user) %> <%= typing_class(users, user) %>"></i>
                   </figure>
                 <% end %>
@@ -55,7 +55,7 @@
           <div class="tile tile-centered">
             <div class="tile-icon">
               <figure class="avatar avatar-xl" data-initial="<%= initials(user) %>" style="background-color: #5755d9;">
-                <img src="<%= avatar_image_url(user) %>" alt="Avatar for user <%= full_name(user) %>">
+                <img src="<%= avatar_image_url(user) %>" alt="<%= gettext("Avatar for user %{full_name}", full_name: full_name(user)) %>">
                 <i class="avatar-presence <%= status_class(users, user) %> <%= typing_class(users, user) %>"></i>
               </figure>
             </div>
@@ -65,17 +65,12 @@
               </div>
               <small class="tile-subtitle text-gray"><%= format_datetime(recent_message.inserted_at) %></small>
             </div>
-            <%# <div class="tile-action">
-              <button class="btn btn-link">
-                <i class="icon icon-more-vert"></i>
-              </button>
-            </div> %>
           </div>
           <% end %>
         </div>
         <div class="card-footer">
           <div class="btn-group btn-group-block">
-            <%= link "View", to: Routes.live_path(@socket, PresenceChatWeb.ChatLiveView, chat), data: [phx_live_link: "push"], class: "btn btn-primary" %>
+            <%= link gettext("View"), to: Routes.live_path(@socket, PresenceChatWeb.ChatLiveView, chat), data: [phx_live_link: "push"], class: "btn btn-primary" %>
           </div>
           <%# <button class="btn btn-primary">...</button> %>
         </div>
@@ -89,18 +84,20 @@
           <div class="empty-icon">
             <i class="icon icon-3x icon-flag"></i>
           </div>
-          <p class="empty-title h5">No existing chats found</p>
-          <p class="empty-subtitle">You can create create new one to start conversation.</p>
+          <p class="empty-title h5">
+            <%= gettext("No existing chats found") %>
+          </p>
+          <p class="empty-subtitle">
+            <%= gettext("You can create create new one to start conversation.") %>
+          </p>
           <div class="empty-action">
-            <%= form_for @new_chat, Routes.chat_path(@conn, :create), [phx_submit: :create_chat, csrf_token: @csrf_token], fn f -> %>
-
+            <%= form_for @new_chat, "#", [phx_submit: :create_chat, csrf_token: @csrf_token], fn f -> %>
               <div class="form-group col-3 col-sm-10 col-md-6 col-lg-4 col-mx-auto <%= if @new_chat.action, do: "has-error", else: "" %>">
-                <%# label f, :name, class: "form-label" %>
                 <%= text_input f, :name, value: @search.query, class: "form-input input-lg text-center", placeholder: "Enter name here...", required: true %>
                 <%= error_tag f, :name %>
               </div>
 
-              <%= submit "Create new chat", class: "btn btn-primary input-group-btn btn-lg" %>
+              <%= submit gettext("Create new chat"), class: "btn btn-primary input-group-btn btn-lg" %>
             <% end %>
           </div>
         </div>

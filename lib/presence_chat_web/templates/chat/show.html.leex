@@ -53,16 +53,17 @@
         </div>
         <div class="panel-body">
           <%= for message <- @chat.messages do %>
+            <% user = message.author %>
             <div class="tile">
               <div class="tile-icon">
-                <figure class="avatar avatar-lg" data-initial="<%= initials(message.author) %>" style="background-color: #5755d9;">
-                  <img src="<%= avatar_image_url(message.author) %>" alt="Avatar for user <%= full_name(message.author) %>">
-                  <i class="avatar-presence <%= status_class(@users, message.author) %>"></i>
+                <figure class="avatar avatar-lg" data-initial="<%= initials(user) %>" style="background-color: #5755d9;">
+                  <img src="<%= avatar_image_url(user) %>" alt="<%= gettext("Avatar for user %{full_name}", full_name: full_name(user)) %>">
+                  <i class="avatar-presence <%= status_class(@users, user) %>"></i>
                 </figure>
               </div>
               <div class="tile-content">
                 <p class="tile-title text-bold mb-0">
-                  <%= full_name(message.author) %>
+                  <%= full_name(user) %>
                   <span class="text-normal text-italic">(<%= message.inserted_at %>)</span>
                 </p>
                 <p class="tile-subtitle text-break"><%= message.body %></p>
@@ -76,14 +77,14 @@
               <div class="form-group <%= if @message.action, do: "has-error", else: "" %>">
                 <%= error_tag f, :body %>
                 <div class="input-group">
-                  <%= text_input :message, :body, value: @message.changes[:body], phx_blur: "stop_typing", placeholder: "write your message here...", autofocus: true, required: true, class: "form-input input-lg", autocomplete: "off" %>
-                  <%= submit "Send", class: "btn btn-primary input-group-btn btn-lg" %>
+                  <%= text_input :message, :body, value: @message.changes[:body], phx_blur: "stop_typing", placeholder: gettext("write your message here..."), autofocus: true, required: true, class: "form-input input-lg", autocomplete: "off" %>
+                  <%= submit gettext("Send"), class: "btn btn-primary input-group-btn btn-lg" %>
                 </div>
               </div>
             <% end %>
           <% else %>
             <div class="btn-group btn-group-block">
-              <%= link "Join", to: "#", phx_click: :join, class: "btn btn-primary" %>
+              <%= link gettext("Join"), to: "#", phx_click: :join, class: "btn btn-primary" %>
             </div>
           <% end %>
         </div>
